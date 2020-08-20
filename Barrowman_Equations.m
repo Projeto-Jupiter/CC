@@ -26,7 +26,7 @@ delta = pi/60; % valor de inclinação das aletas fixas
 %Parâmetros da Cauda
 h = 60 / 1000; % comprimento da cauda
 r2 = 43.5 / 1000; % menor raio da cauda
-pos_tail = l0 + h; % posição da cauda medida do ogiva
+pos_tail = l0 + h; % posição da cauda medida da ogiva
 
 V = Vb + (2 * pi * (rt^2) * l0) + ( (h * pi / 3) * (rt^2 + rt*r2 + r2^2)); % volume pro Cmalfa
 
@@ -93,8 +93,8 @@ c3 = ((Cr + 3*Ct)/12) * (span^3);
 
 %Coeficientes de correção para os lift detivatives
 KTB = 1+( rt / (span + rt) ); % fórmula oriunda do OpenRocket que coincide com o RocketPy
-KBT=(((1-(1/(tau^2)))^2)/((1-(1/tau))^2))-KTB;
-kTB=(1/(pi^2))*(((pi^4)/4)*(((tau+1)^2)/(tau^2))+(((pi*((tau^2)+1)^2)/((tau^2)*((tau-1)^2)))*asin(((tau^2)-1)/((tau^2)+1)))-((2*pi*(tau+1))/(tau*(tau+1)))+(((((tau^2)+1)^2)/((tau^2)*((tau-1)^2)))*((asin(((tau^2)-1)/((tau^2)+1)))^2))-(((4*(tau+1))/(tau*(tau-1)))*asin(((tau^2)-1)/((tau^2)+1)))+((8/((tau-1)^2))*log(((tau^2)+1)/(2^tau))));
+KBT=( ( (1- (1/(tau^2)) )^2)  /  ( (1- (1/tau))^2) )-KTB;
+kTB=(1/ (pi^2) ) * ( ( (pi^4)/4) * ( ((tau+1)^2)/(tau^2) ) + ( ( (pi*((tau^2)+1)^2) / ((tau^2)*((tau-1)^2)) )*asin(((tau^2)-1)/((tau^2)+1)))-((2*pi*(tau+1))/(tau*(tau+1)))+(((((tau^2)+1)^2)/((tau^2)*((tau-1)^2)))*((asin(((tau^2)-1)/((tau^2)+1)))^2))-(((4*(tau+1))/(tau*(tau-1)))*asin(((tau^2)-1)/((tau^2)+1)))+((8/((tau-1)^2))*log(((tau^2)+1)/(2^tau))));
 KRB=1+(a1/(a2-a3)); 
 
 %--------------------------------------------------------------------------------------------------------------------------------
@@ -103,11 +103,11 @@ KRB=1+(a1/(a2-a3));
 Cnalfa0 = 2 * pi / beta;
 Cnalfa1 = ( 2 * pi * AR * (Af / Ar) ) / (2 + sqrt( 4 + ( (beta * AR / (cos(gamac)) )^2 ) ) );
 Cnalfat = ((4 * N * (span / Lr) ^ 2) / (1 + sqrt(1 + (2 * Lf / (Cr + Ct)) ^ 2))) * (1 + rt / (span + rt));
-Cntail= -2 * (1 - ((r2 / rt)^2));
+CnTail= -2 * (1 - ((r2 / rt)^2));
 
-Cnab = 2 * pi * (r0^2) / Ar; %CnaTB = Cnalfat * KTB;
+CnAlfaNose = 2 * pi * (r0^2) / Ar; %CnaTB = Cnalfat * KTB;
 %CnaBT = Cnalfat * KBT;
-Cnalfa = (Cnab + Cnalfat + Cntail); % derivativo do coeficiente de força normal total
+Cnalfa = (CnAlfaNose + Cnalfat + CnTail); % derivativo do coeficiente de força normal total
 %centros de pressão (A fórmula 2 do Opk ta divergindo do Brwmn)
 XTB = pos_aletas - (sweep / 3) * ( (Cr + 2 * Ct) / (Cr + Ct) ) + (1/6) * (Cr + Ct - Cr * Ct / (Cr + Ct)); %centro de pressão das aletas
 %XBT = pos_aletas + (Cr / 4) + (( b1 * acosh(span / rt) - span + (pi * rt /2)) / ((rt / b1) * acosh(span / rt) + (span / rt) - (pi / 2))) * b2;
@@ -115,8 +115,9 @@ XTB = pos_aletas - (sweep / 3) * ( (Cr + 2 * Ct) / (Cr + Ct) ) + (1/6) * (Cr + C
 XB = logiva - logiva/2;
 Xtail = pos_tail - (h/3) * (1 + ( (1 - r) / (1 - r^2) ) );
 %Cálculo do centro de pressão total
-x_ref = (XB * Cnab + XTB * Cnalfat + Xtail * Cntail) / Cnalfa;
+x_ref = (XB * CnAlfaNose + XTB * Cnalfat + Xtail * CnTail) / Cnalfa;
 
-Cnfdelta = N * Cnalfa1 * Y / span; % roll forcing moment coefficient derivative
-Cndomega= (N * Cnalfa0 * Lr * (c1 + c2 + c3))/(Ar * span * (Lr)) ; %roll damping moment coefficient derivative (falta fazer: *omega*cos(delta)/v0)
+Cnfdelta = N * Y / span; % roll forcing moment coefficient derivative, multiple by delta and Cnalfa1
+Cndomega= (N * (c1 + c2 + c3))/(Ar * span * (Lr)) ; %roll damping moment coefficient derivative (falta fazer: *omega*cos(delta)/v0)
 %Os dois coeficientes acima foram renomeados para o nome ficar semelhante ? documenta??o do HL_20
+save barrowaman.mat
