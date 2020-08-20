@@ -1,0 +1,3 @@
+## Control Canards
+
+Control canards is a project to control the roll moment of the rocket during flight, this project and this repository are under construction...
