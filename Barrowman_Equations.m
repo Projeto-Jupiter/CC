@@ -21,7 +21,7 @@ Ct = 40 / 1000;
 span = 100 / 1000; 
 pos_aletas = -2.367; % posição das aletas medido da ogiva
 N = 4; % número de aletas
-delta = 0; % valor de inclinação das aletas fixas
+delta = pi/60; % valor de inclinação das aletas fixas
 
 %Parâmetros da Cauda
 h = 60 / 1000; % comprimento da cauda
