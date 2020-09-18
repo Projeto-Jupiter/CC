@@ -59,7 +59,7 @@ Cnalfa = (CnAlfaNose + Cnalfat + CnTail); % derivativo do coeficiente de força n
 
 XTB = pos_aletas - (sweep / 3) * ( (Cr + 2 * Ct) / (Cr + Ct) ) + (1/6) * (Cr + Ct - Cr * Ct / (Cr + Ct)); %centro de pressão das aletas
 
-XB = logiva - logiva/2;
+XB = -(logiva - logiva/2);
 %Cálculo do centro de pressão total
 x_ref = (XB * CnAlfaNose + XTB * Cnalfat + Xtail * CnTail) / Cnalfa;
 
