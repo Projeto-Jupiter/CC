@@ -10,7 +10,8 @@ Vb = 0.004253; %volume da ogiva
 
 %Parâmetros da fuselagem
 rt = 127 / 2000; % raio na cauda
-l0 = -2.528; % comprimento do foguete (agr ta em 2406mm)
+l0 = -2.528; % comprimento do foguete
+lTubo = l0 - logiva; % comprimento apenas de fuselagem
 x_cg = -1.278; % posição do centro de massa medido da ogiva
 Rs = 40/1000000; % Rugosidade RMC
 
@@ -25,9 +26,7 @@ delta = 0; % valor de inclinação das aletas fixas
 %Parâmetros da Cauda
 h = 60 / 1000; % comprimento da cauda
 r2 = 43.5 / 1000; % menor raio da cauda
-pos_tail = l0 + h; % posição da cauda medida da ogiva
-
-V = Vb + (2 * pi * (rt^2) * l0) + ( (h * pi / 3) * (rt^2 + rt*r2 + r2^2)); % volume pro Cmalfa
+pos_tail = l0; % posição da cauda medida da ogiva
 
 %Entradas pro Simulink
 mcarregado = 18.48;
