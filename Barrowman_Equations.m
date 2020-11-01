@@ -49,4 +49,18 @@ x_ref = (XB * CnAlfaNose + XTB * Cnalfat + Xtail * CnAlfaTail) / Cnalfa;
 Cnfdelta = N * Y / span; % roll forcing moment coefficient derivative, multiple by delta and Cnalfa1
 Cndomega= (N * (c1 + c2 + c3))/(Ar * (Lr)) ; %roll damping moment coefficient derivative (partial, uses real time numbers during simulation)
 
+%--------------------------------------------------------------------------------
+c1_canard = ((Cr+Ct) /  2) * (rt^2) * span;
+c2_canard = ((Cr + 2*Ct)/3) * rt * (span^2);
+c3_canard = ((Cr + 3*Ct)/12) * (span^3);
+sweep_canard = (Cr_canard - Ct_canard); % calculating que sweep_canard distance
+Af_canard = (Cr_canard + Ct_canard) * span_canard / 2; % fin area
+AR_canard= 2 * (span_canard^2) / Af_canard; % Fin Aspect Ratio
+gamac_canard = atan( (Cr_canard - Ct_canard) / (2 * span_canard) ); % mid chord angle
+yparcial_canard = (Cr_canard + 2 * Ct_canard) / (Cr_canard + Ct_canard); %mean aerodynamic chord distance
+Y_canard = rt + (span_canard/3) * yparcial_canard; %mean aerodynamic chord distance with the radius added
+Lf_canard = sqrt((Cr_canard / 2 - Ct_canard / 2) ^ 2 + span_canard ^ 2); % Pre calculus. No Physical meaning
+Cnfdelta_canard = N_canard * Y_canard / span_canard; % roll forcing moment coefficient derivative, multiple by delta and Cnalfa1
+Cndomega_canard= (N_canard * (c1_canard + c2_canard + c3_canard))/(Ar * (Lr)) ; %roll damping moment coefficient derivative (partial, uses real time numbers during simulation)
+
 save barrowaman.mat

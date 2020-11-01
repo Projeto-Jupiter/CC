@@ -28,6 +28,14 @@ h = 60 / 1000; % comprimento da cauda
 r2 = 43.5 / 1000; % menor raio da cauda
 pos_tail = l0; % posição da cauda medida da ogiva
 
+% Canards set 
+N_canard = 4;
+Cr_canard = 40 / 1000;
+Ct_canard = 40 / 1000; %O tip é do tamanho do root para aproveitar que quanto mais longe do foguete, maior é o braço do momento
+span_canard = 80 / 1000;
+arm_canard = 10/1000; % Braço entre a aleta e a fuselagem
+alfa_canard = degtorad(1); % angulo de ataque máximo para as canards
+
 %Entradas pro Simulink
 mcarregado = 18.48;
 mdescarregado = 15.576;
