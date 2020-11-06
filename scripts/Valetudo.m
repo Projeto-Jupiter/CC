@@ -49,7 +49,8 @@ F_data = F{:, 2};
 MDot = readtable('../Data/Keron/mDot.csv');
 MDot_array= table2array(MDot);
 MDot_input = MDot{:, 1};
-MDot_data = MDot{:, 2};
+MDot_data = MDot{:, 2}; 
+V_Exhaust = 1004.589;               % SOURCE: ROCKETPY CALCULATIONS
 
 CD = readtable('../Data/powerOff_Valetudo.csv');
 CD_array = table2array(CD);

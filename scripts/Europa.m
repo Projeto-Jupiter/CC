@@ -21,7 +21,7 @@ Ct = 40 / 1000;
 span = 100 / 1000; 
 pos_aletas = -2.367; % posição das aletas medido da ogiva
 N = 4; % número de aletas
-delta = 0; % valor de inclinação das aletas fixas
+delta = degtorad(0.5); % valor de inclinação das aletas fixas
 
 %Parâmetros da Cauda
 h = 60 / 1000; % comprimento da cauda
@@ -42,6 +42,7 @@ MDot = readtable('../Data/Comercial/cesaroni_wt_mdot.csv');
 MDot_array= table2array(MDot);
 MDot_input = MDot{:, 1};
 MDot_data = MDot{:, 2};
+V_Exhaust = 1168.09;               % SOURCE: PROPULSION TR LASC 2020
 
 CD = readtable('../Data/Novo_CD.csv');
 CD_array = table2array(CD);
