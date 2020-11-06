@@ -47,7 +47,7 @@ XB = -(logiva - logiva/2); % Nosecone center of pressure
 x_ref = (XB * CnAlfaNose + XTB * Cnalfat + Xtail * CnAlfaTail) / Cnalfa;
 
 Cnfdelta = N * Y / span; % roll forcing moment coefficient derivative, multiple by delta and Cnalfa1
-Cndomega= (N * (c1 + c2 + c3))/(Ar * (Lr)) ; %roll damping moment coefficient derivative (partial, uses real time numbers during simulation)
+CndNi= (N * (c1 + c2 + c3))/(Ar * (Lr)) ; %roll damping moment coefficient derivative (partial, uses real time numbers during simulation)
 
 %--------------------------------------------------------------------------------
 c1_canard = ((Cr+Ct) /  2) * (rt^2) * span;
@@ -60,7 +60,13 @@ gamac_canard = atan( (Cr_canard - Ct_canard) / (2 * span_canard) ); % mid chord 
 yparcial_canard = (Cr_canard + 2 * Ct_canard) / (Cr_canard + Ct_canard); %mean aerodynamic chord distance
 Y_canard = rt + (span_canard/3) * yparcial_canard; %mean aerodynamic chord distance with the radius added
 Lf_canard = sqrt((Cr_canard / 2 - Ct_canard / 2) ^ 2 + span_canard ^ 2); % Pre calculus. No Physical meaning
+
+%XTB_canard = pos_canard - (sweep_canard / 3) * ( (Cr_canard + 2 * Ct_canard) / (Cr_canard + Ct_canard) ) + (1/6) * (Cr_canard + Ct_canard - Cr_canard * Ct_canard / (Cr_canard + Ct_canard)); % Fin's center of pressure
+XTB_canard = x_cg;
+Cnalfat_canard = ((4 * N_canard * (span_canard / Lr) ^ 2) / (1 + sqrt(1 + (2 * Lf_canard / (Cr_canard + Ct_canard)) ^ 2))) * (1 + rt / (span_canard + rt));
+Cnalfat_canard = Cnalfat_canard * (1 + r0/(span_canard + r0)); %interference factor
+
 Cnfdelta_canard = N_canard * Y_canard / span_canard; % roll forcing moment coefficient derivative, multiple by delta and Cnalfa1
-Cndomega_canard= (N_canard * (c1_canard + c2_canard + c3_canard))/(Ar * (Lr)) ; %roll damping moment coefficient derivative (partial, uses real time numbers during simulation)
+CndNi_canard= (N_canard * (c1_canard + c2_canard + c3_canard))/(Ar * (Lr)) ; %roll damping moment coefficient derivative (partial, uses real time numbers during simulation)
 
 save barrowaman.mat

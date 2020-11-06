@@ -34,7 +34,9 @@ Cr_canard = 40 / 1000;
 Ct_canard = 40 / 1000; %O tip é do tamanho do root para aproveitar que quanto mais longe do foguete, maior é o braço do momento
 span_canard = 80 / 1000;
 arm_canard = 10/1000; % Braço entre a aleta e a fuselagem
-alfa_canard = degtorad(1); % angulo de ataque máximo para as canards
+alfa_canard = degtorad(-1); % angulo de ataque máximo para as canards
+%pos_canard = -(558.29 + 40)/1000;
+pos_canard=x_cg;
 
 %Entradas pro Simulink
 mcarregado = 18.48;
