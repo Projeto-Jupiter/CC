@@ -47,6 +47,6 @@ XB = -(logiva - logiva/2); % Nosecone center of pressure
 x_ref = (XB * CnAlfaNose + XTB * Cnalfat + Xtail * CnAlfaTail) / Cnalfa;
 
 Cnfdelta = N * Y / span; % roll forcing moment coefficient derivative, multiple by delta and Cnalfa1
-Cndomega= (N * (c1 + c2 + c3))/(Ar * (Lr)) ; %roll damping moment coefficient derivative (partial, uses real time numbers during simulation)
+CndNi= (N * (c1 + c2 + c3))/(Ar * Lr) ; %roll damping moment coefficient derivative (partial, uses real time numbers during simulation)
 
 save barrowaman.mat
