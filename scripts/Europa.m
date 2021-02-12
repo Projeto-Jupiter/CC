@@ -21,7 +21,7 @@ Ct = 40 / 1000;
 span = 100 / 1000; 
 pos_aletas = -2.367; % posição das aletas medido da ogiva
 N = 4; % número de aletas
-delta = degtorad(0.5); % valor de inclinação das aletas fixas
+delta = degtorad(2); % valor de inclinação das aletas fixas
 
 %Parâmetros da Cauda
 h = 60 / 1000; % comprimento da cauda
@@ -34,7 +34,7 @@ Cr_canard = 40 / 1000;
 Ct_canard = 40 / 1000; %O tip é do tamanho do root para aproveitar que quanto mais longe do foguete, maior é o braço do momento
 span_canard = 80 / 1000;
 arm_canard = 10/1000; % Braço entre a aleta e a fuselagem
-alfa_canard = degtorad(-1); % angulo de ataque máximo para as canards
+alfa_canard = degtorad(0); % angulo de ataque máximo para as canards
 %pos_canard = -(558.29 + 40)/1000;
 pos_canard=x_cg;
 
