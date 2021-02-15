@@ -1,3 +1,4 @@
+run('scripts/Europa.m')
 %-------------------------------------------------------------------------------------------------------------------------------
 %Support formulations to further use
 %Fin-related parameters
